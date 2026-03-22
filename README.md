@@ -32,7 +32,7 @@ cd readme-generator/projeto-flisol
 2. **Garanta que o utilitário tree está no seu Linux com o comando:**
 ```bash
 sudo apt install tree -y
-```bash
+```
 
 2. **Configure o ambiente virtual (criação e ativação do ambiente):** 
 ```bash
