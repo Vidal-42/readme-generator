@@ -21,6 +21,35 @@ O objetivo deste projeto é automatizar a criação de arquivos README.md para r
 
 ```
 
+## 🖥️ Instalação e Execução 
+
+1. **Clone o repositório e entre no diretório:** 
+```bash
+git clone https://github.com/Vidal-42/readme-generator.git
+cd readme-generator/projeto-flisol
+```
+
+2. **Garanta que o utilitário tree está no seu Linux com o comando:**
+```bash
+sudo apt install tree -y
+```bash
+
+2. **Configure o ambiente virtual (criação e ativação do ambiente):** 
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+3. **Instale as dependências:** 
+```bash
+pip install -r requirements.txt
+```
+
+4. **Execute o gerador de README's:** 
+```bash
+python3 main.py
+```
+
+
 ## ⚙️ Passo a Passo para Configuração do Ambiente (Teste inicial)
 1. **Instalação das dependências do sistema:**
 ```bash
@@ -72,35 +101,7 @@ if __name__ == "__main__":
 python3 main.py <SeuNome>
 ```
 
-## 🖥️ Instalação e Execução 
-
-1. **Clone o repositório e entre no diretório:** 
-```bash
-git clone https://github.com/Vidal-42/readme-generator.git
-cd readme-generator/projeto-flisol
-```
-
-2. **Garanta que o utilitário tree está no seu Linux com o comando:**
-```bash
-sudo apt install tree -y
-```bash
-
-2. **Configure o ambiente virtual (criação e ativação do ambiente):** 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-3. **Instale as dependências:** 
-```bash
-pip install -r requirements.txt
-```
-
-4. **Execute o gerador de README's:** 
-```bash
-python3 main.py
-```
-
-## 📊 6. Dica
+## 📊 Dica
 > [!TIP]
 > Use python3 main.py --help para ver os comandos
 
