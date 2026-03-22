@@ -12,11 +12,13 @@ def gerar():
 
     # Coleta de informações via Terminal
     titulo = typer.prompt("1. Título do Projeto")
-    subtitulo = typer.prompt("1b. Subtítulo/Slogan", default="Desenvolvido com Python")
+    subtitulo = typer.prompt("1b. Subtítulo")
     objetivo = typer.prompt("2. Objetivo (O que faz?)")
-    decisoes = typer.prompt("3. Decisões Técnicas", default="Uso de Typer e venv")
-    uso = typer.prompt("6. Comando de execução", default="python3 main.py")
-    licenca = typer.prompt("9. Licença", default="MIT")
+    decisoes = typer.prompt("3. Decisões Técnicas")
+    ambiente = typer.prompt("4. Ambiente da execução")
+    dependencias = typer.prompt("5. dependencias")
+    uso = typer.prompt("5. Comando de execução")
+    licenca = typer.prompt("6. Licença")
 
     typer.echo("\n🚀 Lendo estrutura de pastas e gerando arquivo...")
 
@@ -27,18 +29,18 @@ def gerar():
     conteudo = f"""# {titulo}
 > {subtitulo}
 
-## 🎯 Objetivo do Projeto
+## 🎯 Objetivo 
 {objetivo}
 
-## 🛠️ Decisões Técnicas e Implementação
+## 🎲 Decisões Técnicas e Implementação
 - {decisoes}
 
-## 📂 Estrutura do Repositório
+## 📂 Estrutura 
 {estrutura_real}
 
 ## ⚙️ Guia de Configuração
-1. **Ambiente:** `python3 -m venv .venv && source .venv/bin/activate`
-2. **Dependências:** `pip install -r requirements.txt` (se houver)
+1. **Ambiente:** {ambiente}
+2. **Dependências:** {dependencias}
 
 ## 🚀 Execução
 ```bash
@@ -46,9 +48,8 @@ def gerar():
 ```
 
 ## 📊 6. Visualização de Evidências
-Notas
-[!TIP]
-Use python3 main.py --help para ver os comandos
+> [!TIP]
+> Use python3 main.py --help para ver os comandos
 
 ## 📄 8. Licença
 Distribuído sob a licença {licenca}. Veja o arquivo LICENSE para mais detalhes.
