@@ -100,7 +100,7 @@ app = typer.Typer()
 @app.command()
 def teste_saudacao(nome: str):
     #Comando para testar o ambiente.
-    print(f"Oi, nome! O Typer está funcionando no seu WSL.")
+    print(f"Oi, {nome}! O Typer está funcionando no seu WSL.")
 
 if __name__ == "__main__":
     app() 
