@@ -1,4 +1,4 @@
-# Gerador de README usando Python e WSL (Subsistema do Windows para Windows)
+# Gerador de README usando Python e WSL (Subsistema do Windows para Linux)
 > Projeto Tech - Flisol
 
 ## 🎯 Objetivo 
