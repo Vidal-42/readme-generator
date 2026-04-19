@@ -1,0 +1,63 @@
+# Ambiente virtual
+.venv/
+venv/
+ENV/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribuição / build
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testes
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs e bancos
+*.log
+*.sql
+*.sqlite
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.*.local
+
+# WSL/Windows específicos
+.thumbs.db
+desktop.ini
+
+# Arquivos do seu projeto que não devem ser commitados
+*.pyc
