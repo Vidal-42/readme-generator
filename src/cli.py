@@ -15,20 +15,7 @@ from src.gerador import montar_template
 app = typer.Typer()
 
 def validar_caminho_linux(caminho: str) -> Path:
-    """
-    Converte o caminho para Path, expande '~' e verifica se é um formato Linux válido.
-    Se conter ':' ou '\\', assume que é caminho Windows e lança erro.
-    """
-    # Verifica padrão de caminho Windows (ex: C:\ ou C:/)
-    if re.search(r'^[a-zA-Z]:[/\\]', caminho) or '\\' in caminho:
-        raise typer.BadParameter(
-            "Caminho no formato Windows detectado. Use apenas caminhos no estilo Linux.\n"
-            "Exemplos válidos:\n"
-            "  /home/usuario/projeto\n"
-            "  ~/projetos/meu-app\n"
-            "  . (pasta atual)"
-        )
-    
+    """Converte o caminho para Path, expande '~' e verifica se é um formato Linux válido."""
     # Expande '~' para o diretório home
     caminho_expandido = os.path.expanduser(caminho)
     return Path(caminho_expandido).resolve()
@@ -38,27 +25,20 @@ def main(
     ctx: typer.Context,
     caminho: str = typer.Argument(None, help="Caminho do projeto no formato Linux (ex: /home/user/projeto).")
 ):
-    """
-    Gera um README.md para o projeto de forma interativa.
-    Aceita apenas caminhos no estilo Linux (Unix).
-    """
+    """Gera um README.md para o projeto de forma interativa."""
     if ctx.invoked_subcommand is not None:
         return
 
     typer.echo("🚀 Gerador de README - Iniciando...")
 
-    try:
-        if caminho:
-            caminho_projeto = validar_caminho_linux(caminho)
-        else:
-            pasta_atual = Path.cwd()
-            typer.echo(f"\n💡 Dica: Enter usa a pasta atual: {pasta_atual}")
-            typer.echo("   Informe um caminho no formato Linux (ex: /home/usuario/projeto)")
-            caminho_raw = typer.prompt("Informe o caminho do projeto alvo", default=str(pasta_atual))
-            caminho_projeto = validar_caminho_linux(caminho_raw)
-    except typer.BadParameter as e:
-        typer.echo(f"❌ {e}")
-        raise typer.Exit(1)
+    if caminho:
+        caminho_projeto = validar_caminho_linux(caminho)
+    else:
+        pasta_atual = Path.cwd()
+        typer.echo(f"\n💡 Dica: Enter usa a pasta atual: {pasta_atual}")
+        typer.echo("   Informe um caminho no formato Linux (ex: /home/usuario/projeto)")
+        caminho_raw = typer.prompt("Informe o caminho do projeto alvo", default=str(pasta_atual))
+        caminho_projeto = validar_caminho_linux(caminho_raw)
 
     if not caminho_projeto.exists():
         typer.echo(f"❌ Erro: O sistema não encontrou o caminho: {caminho_projeto}")
@@ -66,7 +46,7 @@ def main(
 
     typer.echo(f"✅ Projeto localizado: {caminho_projeto}")
 
-    # Coleta de dados (mesmo código anterior)
+    # Coleta de dados
     typer.echo("🔍 Analisando arquivos...")
     deps_sug = detectar_dependencias(str(caminho_projeto))
     resumo_sug = sugerir_resumo_projeto(str(caminho_projeto))
@@ -89,18 +69,30 @@ def main(
     else:
         decisoes = typer.prompt("Decisões técnicas")
 
-    uso = typer.prompt("Comando de execução", default=cmd_sug)
+    # --- Passo a passo de execução (substitui o antigo "uso") ---
+    typer.echo("\n📖 Configure o passo a passo para executar o código (quem for usar seu projeto):")
+    if typer.confirm("Deseja criar uma lista de passos numerados?", default=True):
+        qtd_passos = typer.prompt("Quantos passos?", type=int, default=2)
+        passos = []
+        for i in range(qtd_passos):
+            passo = typer.prompt(f"Passo {i+1}")
+            passos.append(f"{i+1}. {passo}")
+        execucao_md = "\n".join(passos)
+    else:
+        comando_unico = typer.prompt("Comando único de execução", default=cmd_sug)
+        execucao_md = f"Execute o comando abaixo:\n```bash\n{comando_unico}\n```"
+
     licenca = typer.prompt("Licença", default="MIT")
 
+    # Geração do conteúdo
     estrutura = capturar_estrutura_python(str(caminho_projeto))
     dados = {
         "titulo": titulo,
         "subtitulo": subtitulo,
         "objetivo": objetivo,
         "decisoes": decisoes,
-        "uso": uso,
+        "execucao": execucao_md,
         "licenca": licenca,
-        "evidencias": "",
         "dependencias": dependencias,
         "variaveis_ambiente": env_vars,
         "versao_python": obter_versao_python()

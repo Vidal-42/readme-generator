@@ -16,8 +16,6 @@ def montar_template(dados, estrutura):
         secao_env += "\n".join([f"{v}=" for v in dados['variaveis_ambiente']])
         secao_env += "\n```\n\n"
 
-    secao_evidencias = f"## 📸 Visualização\n{dados['evidencias']}\n" if dados.get('evidencias') else ""
-
     return f"""# {dados['titulo']}
 > {dados['subtitulo']}
 
@@ -33,12 +31,8 @@ def montar_template(dados, estrutura):
 ```text
 {estrutura}
 ```
-
-## Guia de execução
-```bash
-{dados['uso']}
-```
-{secao_evidencias}
+## Passo a passo para executar o código
+{dados['execucao']}
 
 ## Licença
 Distribuído sob a licença {dados['licenca']}.
