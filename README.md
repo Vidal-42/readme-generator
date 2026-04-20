@@ -12,6 +12,15 @@ Auxiliar o desenvolvimento de documentação de códigos em README's do Github, 
 - Arquitetura modular com separação entre análise (analisador.py), geração de template (gerador.py) e interface CLI (cli.py)
 - Integração com entry point via pyproject.toml, permitindo instalação global e comando único 'gen-readme'
 
+## 📋 Pré-requisitos
+
+Antes de começar, certifique-se de ter as seguintes ferramentas instaladas e configuradas no seu ambiente:
+
+* **Sistema Operacional:** Linux ou Windows com o **[WSL](https://learn.microsoft.com/pt-br/windows/wsl/install)** (Windows Subsystem for Linux) ativado. Recomendamos a distribuição **Ubuntu**.
+* **[Git](https://git-scm.com/):** Para conseguir clonar o repositório.
+* **[Python 3](https://www.python.org/):** A linguagem base do projeto. (Nota: o Ubuntu no WSL geralmente já vem com o Python, mas você precisará instalar o gerenciador de pacotes `pip` e o criador de ambientes virtuais `venv`).
+* **Editor de Código (Recomendado):** **[VS Code](https://code.visualstudio.com/)** com a extensão oficial **WSL** instalada, para facilitar a integração entre o Windows e o terminal Linux.
+
 ## 📂 Estrutura do Projeto
 ```text
 |-- meu_gerador_readme.egg-info/
