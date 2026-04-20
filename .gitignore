@@ -1,0 +1,47 @@
+# Virtual environments
+.venv/
+venv/
+env/
+.env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# IDE e editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Arquivos de log e relatórios
+*.log
+*.xml
+*.html
+results/
+logs/
+
+# Distribuição e builds
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Arquivos de dados sensíveis
+*.env
+*.pem
+*.key
+
+# Ferramentas de teste
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+
+# Arquivos temporários do sistema
+Thumbs.db
+desktop.ini
