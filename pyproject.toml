@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "meu-gerador-readme"
+version = "1.0.0"
+description = "Ferramenta interativa para gerar README.md profissional"
+readme = "README.md"
+authors = [{name = "Seu Nome", email = "seu@email.com"}]
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "typer>=0.12.0",
+    "rich>=13.0.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/seu-usuario/meu-gerador-readme"
+
+[project.scripts]
+gen-readme = "src.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
