@@ -16,6 +16,11 @@ def montar_template(dados, estrutura):
         secao_env += "\n".join([f"{v}=" for v in dados['variaveis_ambiente']])
         secao_env += "\n```\n\n"
 
+    # Seção de pré-requisitos dinâmica (vem do dicionário)
+    secao_pre_requisitos = ""
+    if dados.get('pre_requisitos'):
+        secao_pre_requisitos = f"## 📋 Pré-requisitos\n\n{dados['pre_requisitos']}\n\n"
+
     return f"""# {dados['titulo']}
 > {dados['subtitulo']}
 
@@ -31,7 +36,8 @@ def montar_template(dados, estrutura):
 ```text
 {estrutura}
 ```
-## Passo a passo para executar o código
+{secao_pre_requisitos}## Passo a passo para executar o código
+
 {dados['execucao']}
 
 ## Licença

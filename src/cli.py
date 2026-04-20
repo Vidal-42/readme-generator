@@ -16,7 +16,6 @@ app = typer.Typer()
 
 def validar_caminho_linux(caminho: str) -> Path:
     """Converte o caminho para Path, expande '~' e verifica se é um formato Linux válido."""
-    # Expande '~' para o diretório home
     caminho_expandido = os.path.expanduser(caminho)
     return Path(caminho_expandido).resolve()
 
@@ -69,7 +68,19 @@ def main(
     else:
         decisoes = typer.prompt("Decisões técnicas")
 
-    # --- Passo a passo de execução (substitui o antigo "uso") ---
+    # --- Coleta de Pré-requisitos (NOVO) ---
+    typer.echo("\n📋 Configure os pré-requisitos necessários para rodar o projeto:")
+    if typer.confirm("Deseja adicionar uma lista de pré-requisitos?", default=True):
+        qtd_pre = typer.prompt("Quantos pré-requisitos deseja listar?", type=int, default=3)
+        pre_requisitos = []
+        for i in range(qtd_pre):
+            pre = typer.prompt(f"Pré-requisito {i+1}")
+            pre_requisitos.append(f"- {pre}")
+        pre_requisitos_md = "\n".join(pre_requisitos)
+    else:
+        pre_requisitos_md = ""
+
+    # --- Passo a passo de execução ---
     typer.echo("\n📖 Configure o passo a passo para executar o código (quem for usar seu projeto):")
     if typer.confirm("Deseja criar uma lista de passos numerados?", default=True):
         qtd_passos = typer.prompt("Quantos passos?", type=int, default=2)
@@ -91,6 +102,7 @@ def main(
         "subtitulo": subtitulo,
         "objetivo": objetivo,
         "decisoes": decisoes,
+        "pre_requisitos": pre_requisitos_md,
         "execucao": execucao_md,
         "licenca": licenca,
         "dependencias": dependencias,
