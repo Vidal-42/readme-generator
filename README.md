@@ -1,4 +1,4 @@
-# Assistente de Geração de Readme.md
+# Assistente de Documentação para Readme.md
 > Ferramenta CLI interativa para criação profissional de documentação
 
 ## 🎯 Objetivo
@@ -31,10 +31,36 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas e co
         |-- gerador.py
 ```
 ## Passo a passo para executar o código
-1. Clone o repositório e entre na pasta: git clone https://github.com/Vidal-42/readme-generator.git && cd readme-generator
-2. Crie e ative um ambiente virtual: python3 -m venv .venv && source .venv/bin/activate
-3. Instale a ferramenta em modo editável: pip install -e .
-4. Execute o gerador com o comando 'gen-readme .', com um ponto se quiser gerar um README.md na pasta que está atualmente ou informe o caminho de outro projeto no lugar do ponto.
+
+```bash
+# 1. Clone o repositório
+git clone https://github.com/Vidal-42/readme-generator.git
+cd readme-generator
+
+# 2. Crie e ative o ambiente virtual
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 3. Instale o pacote em modo editável
+pip install -e .
+```
+
+### Pronto! O comando gen-readme já está disponível dentro do ambiente virtual.
+
+## Como usar (sempre que quiser gerar um README)
+
+```bash
+# 1. Ative o ambiente virtual do readme-generator (de qualquer pasta) com o comando:
+source ~/projeto_gen_readme/readme-generator/.venv/bin/activate
+
+# 2. Vá para a pasta do projeto que você quer documentar:
+cd ~/nome-projeto
+
+# 3. Execute o gerador:
+gen-readme
+```
+
+### O programa vai perguntar o caminho do projeto (basta apertar Enter para usar a pasta atual). Depois, responda as perguntas e o README.md será criado automaticamente.
 
 ## Licença
 Distribuído sob a licença MIT.
